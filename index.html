@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de desculpas</title>
+
+    <style>
+        html{
+            height: 100%;
+        }
+        body{
+            background-color: pink;
+        }
+
+        .painel{
+            margin: auto;
+            background-color: white;
+            width: 90%;
+            border-radius: 20px;
+            text-align: center;
+            padding: 50px 10px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .buttonsContainer {
+            margin: 20px 0;
+        }
+
+        #sim{
+            height: 40px;
+            width: 60px;
+            background-color:pink;
+            border: 2px solid white;
+            border-radius: 10px;
+            color: white;
+            margin-left: -50px;
+            
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes simAni {
+            from {box-shadow: 0px 0px 0px pink}
+            to {box-shadow: 0px 0px 20px 10px pink}
+        }
+
+        #nao{
+            position: absolute;
+            height: 40px;
+            width: 60px;
+            background-color: grey;
+            border: 2px solid white;
+            border-radius: 10px;
+            color: white;
+            margin-left: 10px;
+        }
+        
+        #msgNao {
+            display: none;
+        }
+
+        .final {
+            display: none;
+            position: absolute;
+            z-index: 1000;
+            left: 50%;
+            top:50%;
+            width: 60%;
+            transform: translate(-50%, -50%);
+            background-color: white;;
+            padding: 4em 2em;
+            border-radius: 10px;
+            border: 7px solid pink;
+        }
+
+        .final img{
+            width: 100px;
+        
+        }
+
+        @media (min-width: 600px) {
+            .final img{
+                width: 200px;
+            
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="painel">
+        <h1> Boa noite, Candy querido <3 </h1>
+            <div>
+                <h4>Você me perdoa, mesmo não sabendo oq aconteceu?</h4>
+                <img src="https://media.tenor.com/2Ng4S034m5oAAAAi/sorry-i-apologize.gif" alt="">
+            </div>
+
+            <div id="msgNao">
+                <h1>...</h1>
+            </div>
+
+            <div class="final" id="final">
+                <img src="./pngegg.png" alt="">
+
+                <h1>ae sim mo fi</h1>
+            </div>
+
+            <div class="buttonsContainer">
+                <button onclick="btnSim()" id="sim">Sim!</button>
+                <button onmouseover="fuja()" onclick="fuja()" id="nao">Não.</button>
+            </div>
+            
+    </div>
+    <script>
+        var qtdNao = 0;
+
+        function btnSim() {
+            const fim = document.getElementById("final");
+
+            fim.style.display = "block";
+
+        }
+
+        function fuja(){
+            qtdNao ++;
+            
+            if(qtdNao == 2) {
+                var msgNao = document.getElementById("msgNao");
+                var sim = document.getElementById("sim");
+                msgNao.style.display = "block";
+                sim.style.animationName = "simAni";
+            }
+
+            var botaoNao = document.getElementById("nao")
+            var larguraJanela = window.innerWidth;
+            var alturaJanela = window.innerHeight;
+            
+            var maxX = larguraJanela - botaoNao.offsetWidth;
+            var maxY = alturaJanela - botaoNao.offsetHeight;
+            var aleatorioX = Math.floor(Math.random() * maxX);
+            var aleatorioY = Math.floor(Math.random() * maxY);
+
+            botaoNao.style.left = aleatorioX + "px";
+            botaoNao.style.top = aleatorioY + "px";
+
+        }
+    </script>
+</body>
+</html>
